@@ -40,7 +40,7 @@
 //delay_intnesting¸ÄÎª£ºdelay_osintnesting
 ////////////////////////////////////////////////////////////////////////////////// 
 	 
-void delay_init(void);
+void systick_init(void);
 void delay_ms(u32 nms);
 void delay_us(u32 nus);
 void delay_xms(u32 nms);
