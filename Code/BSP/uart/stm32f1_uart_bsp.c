@@ -104,10 +104,10 @@ uint8_t usartx_read_buf(Uart_dev usartx, uint8_t *buf)
     return i;
 }
 
-Uart_dev usartx_init(Uart_info dev_info, uint32_t baudval, uint8_t *buf_mem, uint16_t buf_size)
+Uart_dev usartx_init(Uart_info dev_info, uint32_t baudval, uint8_t *rx_buf_mem, uint16_t rx_buf_size)
 {
 #ifndef USE_OS
-    ring_buffer_init(&(dev->buf), buf_mem, buf_size);
+    ring_buffer_init(&(dev->buf), rx_buf_mem, rx_buf_size);
     Uart_dev dev = (Uart_dev)pvPortMalloc(sizeof(__Uart_dev));
     if (dev == NULL)
     {
@@ -115,7 +115,7 @@ Uart_dev usartx_init(Uart_info dev_info, uint32_t baudval, uint8_t *buf_mem, uin
     }
 #else
     Uart_dev dev = (Uart_dev)os_malloc(sizeof(__Uart_dev));
-    dev->rx_queue = os_queue_create(buf_size,1);
+    dev->rx_queue = os_queue_create(rx_buf_size,1);
     if (dev == NULL)
     {
         return dev;

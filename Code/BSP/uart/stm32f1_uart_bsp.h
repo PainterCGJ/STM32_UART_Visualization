@@ -42,7 +42,7 @@ typedef __Uart_dev *Uart_dev;
 extern const Uart_info USART1_PA9TX_PA10RX;
 extern const Uart_info USART3_PB10TX_PB11RX;
 
-Uart_dev usartx_init(Uart_info init_info, uint32_t baudval, uint8_t *buf_mem, uint16_t buf_size);
+Uart_dev usartx_init(Uart_info init_info, uint32_t baudval, uint8_t *rx_buf_mem, uint16_t rx_buf_size);
 uint8_t usartx_read_1byte(Uart_dev usartx, uint8_t *data);
 uint8_t usartx_read_buf(Uart_dev usartx, uint8_t *buf);
 void usartx_send(Uart_dev usartx, uint8_t *data, uint8_t size);
