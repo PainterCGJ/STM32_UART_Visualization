@@ -5,3 +5,5 @@
 #include "sys.h"
 #include "os_bsp.h"
 #include "bsp.h"
+
+#include "priority.h"
