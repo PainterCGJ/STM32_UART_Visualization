@@ -88,3 +88,12 @@ void delay_xms(u32 nms)
 	for (i = 0; i < nms; i++)
 		delay_us(1000);
 }
+
+uint32_t get_tick()
+{
+	#if SYSTEM_SUPPORT_OS
+
+	#else
+	
+	#endif
+}
