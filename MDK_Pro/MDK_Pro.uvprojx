@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER,USE_OS</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Code\CMSIS;..\Code\Application\inc;..\Code\BSP\delay;..\Code\BSP\sys;..\Code\Interface\inc;..\Code\STM32F10x_StdPeriph_Driver\inc;..\Code\FreeRTOS;..\Code\FreeRTOS\inc;..\Code\FreeRTOS\port\RVDS\ARM_CM3;..\Code\BSP\sys;..\Code\BSP\systick;..\Code\BSP\oled;..\Code\BSP\os;..\Code\BSP\i2c;..\Code\BSP\uart;..\Code\BSP</IncludePath>
+              <IncludePath>..\Code\CMSIS;..\Code\Application\inc;..\Code\BSP\delay;..\Code\BSP\sys;..\Code\Interface\inc;..\Code\STM32F10x_StdPeriph_Driver\inc;..\Code\FreeRTOS;..\Code\FreeRTOS\inc;..\Code\FreeRTOS\port\RVDS\ARM_CM3;..\Code\BSP\sys;..\Code\BSP\systick;..\Code\BSP\oled;..\Code\BSP\os;..\Code\BSP\i2c;..\Code\BSP\uart;..\Code\BSP;..\Code\BSP\timer</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -628,6 +628,11 @@
               <FileName>stm32f1_uart_bsp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Code\BSP\uart\stm32f1_uart_bsp.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f1_timer_bsp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Code\BSP\timer\stm32f1_timer_bsp.c</FilePath>
             </File>
           </Files>
         </Group>
