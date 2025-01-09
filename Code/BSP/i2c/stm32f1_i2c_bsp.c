@@ -45,6 +45,7 @@ I2C_Dev i2c_master_dev_init(I2C_Info dev_info, uint32_t clock_speed, uint16_t ma
     }
 
     dev->dev_info = dev_info;
+    dev->I2Cx = dev_info.I2Cx;
     dev->clock_speed = clock_speed;
     dev->master_addr = master_addr;
     dev->I2C_Ack = I2C_Ack;
@@ -91,4 +92,32 @@ I2C_Dev i2c_master_dev_init(I2C_Info dev_info, uint32_t clock_speed, uint16_t ma
     I2C_Cmd(dev->dev_info.I2Cx, ENABLE);
 
     return dev;
+}
+
+void i2c_master_transmit(I2C_Dev dev, uint16_t slave_addr, uint8_t sub_addr, uint8_t *data, uint32_t data_len, uint32_t timer_out_us)
+{
+    // 发送起始条件
+    I2C_GenerateSTART(dev->I2Cx, ENABLE);
+    // 等待起始条件已被发送
+    while (!I2C_CheckEvent(dev->I2Cx, I2C_EVENT_MASTER_MODE_SELECT))
+        ;
+
+    // 发送从机地址（写操作，最低位为0表示写）
+    I2C_Send7bitAddress(dev->I2Cx, slave_addr, I2C_Direction_Transmitter);
+    // 等待地址已被发送并被应答
+    while (!I2C_CheckEvent(dev->I2Cx, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
+        ;
+
+    // 循环发送缓冲区中的数据
+    for (uint16_t i = 0; i < data_len; i++)
+    {
+        // 发送数据字节
+        I2C_SendData(dev->I2Cx, data[i]);
+        // 等待数据已被发送并被应答
+        while (!I2C_CheckEvent(dev->I2Cx, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
+            ;
+    }
+
+    // 发送停止条件
+    I2C_GenerateSTOP(dev->I2Cx, ENABLE);
 }

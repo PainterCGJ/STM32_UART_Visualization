@@ -21,6 +21,7 @@ typedef struct
 {
     I2C_Info dev_info;
 
+    I2C_TypeDef *I2Cx;
     uint32_t clock_speed;
     uint16_t master_addr;
     uint16_t I2C_Ack;
